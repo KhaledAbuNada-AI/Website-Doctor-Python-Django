@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+<div dir="rtl">
+<div class="container">
+    <div class="signup">
+
+    <div class="col-md-9" >
+        <form method="POST" enctype="multipart/form-data">
+            <h4 class="auth-header">أنشاء حساب جديد</h4>
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.first_name|as_crispy_field}}
+            </div>
+            <div class="form-group">
+                {{ form.last_name|as_crispy_field}}
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                         {{ form.username|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                         {{ form.email|as_crispy_field}}
+                </div>
+            </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        {{ form.password|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        {{ form.password2|as_crispy_field}}
+                </div>
+            </div>
+            <div class="buttons-w"><button type="submit" class="btn btn-success">التسجيل</button>
+            </div>
+            </div>
+        </form>
+
+    </div>
+    </div>
+</div>
+</div>
+{% endblock body %}

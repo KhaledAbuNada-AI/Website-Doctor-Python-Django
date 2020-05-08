@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<div dir="rtl">
+ {% include 'search.html' %}
+    <!-- job_listing_area_start  -->
+    <div class="job_listing_area">
+        <div class="container">
+            <div class="job_lists">
+                <div class="row">
+                    {% for doctor in doctors %}
+                    <div class="col-lg-10 col-md-10" style="height: 16rem;" >
+                        <div class="single_jobs white-bg d-flex justify-content-between">
+                            <div class="jobs_left d-flex align-items-center">
+                                <div >
+                                  {% if doctor.profile.image %}
+
+                                      <img  src="{{doctor.profile.image.url}}" alt="" width="100" height="100">
+
+                                  {% else %}
+                                        <img  src="{{doctor.profile.image.url}}" alt="" width="100" height="100">
+                                        <img  src="{% static 'static_file/img/candiateds/user_profile_default_img.png' %}" alt="" width="100" height="100">
+
+                                  {% endif %}
+
+                                </div>
+                                <div class="jobs_conetent">
+                                    <a href="{% url 'accounts:doctors_detail' doctor.profile.slug %}"><h5> دكتور {{ doctor.profile.name }}</h5></a>
+                                    <h6>{{ doctor.profile.subtitle }}</h6>
+
+                                    <div class="links_locat">
+                                        <div class="location">
+                                            <p> <i class="fas fa-briefcase-medical"></i> دكتور   <span style="color: blue;">{{ doctor.profile.doctor }}</span>  متخصص في
+                                                <span style="color: blue;">{{ doctor.profile.specialist_doctor }}</span></p>
+                                            <p> <i class="fa fa-map-marker"></i>{{doctor.profile.address}} : {{doctor.profile.address_detail}}</p>
+                                            <p> <i class="fa fa-map-marker"></i> الكشف : <span style="color: blue;">{{doctor.profile.price}}</span> دولار</p>
+                                            <p> <i class="fa fa-clock-o"></i> مدة الانتظار : <span style="color: blue;">{{doctor.profile.Waiting_time}}</span> ساعه</p>
+                                            <p> <i class="fa fa-clock-o"></i> عدد ساعات العمل : <span style="color: blue;">{{doctor.profile.working_hours}}</span> ساعه</p>
+                                            <p> <i class="fa fa-clock-o"></i>سعر المكالمه العادية  :<span style="color: blue;"> {{doctor.profile.number_phone}} </span>  </p>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="jobs_right">
+                                <div class="apply_now">
+                                    <a class="boxed-btn3" href="">حجز كشف</a>
+                                </div>
+
+                                <div class="rating">
+                                    <div class="text-warning">
+                                        <!-- to make image category for clinic image -->
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        </div>
+                                    <div class="rating" >
+                                        <h5>تقييم الدكتور</h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+      {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- job_listing_area_end  -->
+</div>
+    <!-- featured_candidates_area_start  -->
+    <div class="featured_candidates_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section_title text-center mb-40">
+                        <h3>المرشحين المميزين</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="candidate_active owl-carousel">
+                        <div class="single_candidates text-center">
+                            <div class="thumb">
+                                <img class="img-circle " src="{% static 'static_file/img/candiateds/khana.jpg' %}" alt="" >
+
+                            </div>
+                            <a href="" ><h4 >الاسم</h4></a>
+                            <p>  التخصص</p>
+                            <div class="best-rating">
+                                <div class="text-warning">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+
+                                </div>
+                                <div class="best-rating" >
+                                    <h5>تقييم الدكتور</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- featured_candidates_area_end  -->
+{% endblock body %}
+
